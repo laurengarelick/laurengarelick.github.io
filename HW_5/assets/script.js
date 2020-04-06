@@ -47,8 +47,7 @@ $(document).ready(function() {
             var tasks = task.val();
             var tasknum = "tasks" + task.attr("data-task");
             localStorage.setItem(tasknum, tasks);
-            let storedPlans = JSON.parse(localStorage.getItem("storedPlans"));
-
+           
           })
     })
     
