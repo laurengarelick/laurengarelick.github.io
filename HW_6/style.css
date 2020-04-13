@@ -1,0 +1,7 @@
+* {
+font-family: 'Quicksand', sans-serif;
+}
+.jumbotron {
+    background-image: url("https://www.publicdomainpictures.net/pictures/310000/velka/himmel-wolken-wetter-sturmisch.jpg");
+    background-size: cover;
+  }

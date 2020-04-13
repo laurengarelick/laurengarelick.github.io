@@ -1,6 +1,4 @@
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
 }
 
@@ -49,29 +47,15 @@ header {
   background: #6286aa;
   height: 2px;
   padding: 10px 20px 10px 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-body {
   min-height: 50px;
 }
 
-.card-footer {
-  text-align: center;
-}
 
-.card-footer::before {
-  content: " ";
-  display: block;
-  width: 100%;
-  background: #e7e9eb;
-  height: 2px;
-}
-
-.card-footer::after {
-  content: " ";
-  display: block;
-  clear: both;
-}
 
 .btn {
   border: none;
@@ -87,11 +71,14 @@ header {
   padding: 14px 34px;
   text-align: center;
   cursor: pointer;
+  
 }
 
-button[disabled] {
+#button {
   cursor: default;
   background: #c0c7cf;
+  justify-content: center;
+  align-items: center;
 }
 
 .float-right {
@@ -109,7 +96,7 @@ button[disabled] {
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 85px;
-  font-size: 1.2rem;
+  font-size: 3rem;
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -121,20 +108,13 @@ button[disabled] {
   align-items: center;
 }
 
-@media (max-width: 690px) {
-  .btn {
-    font-size: 1rem;
-    margin: 16px 0px 0px 0px;
-    padding: 10px 15px;
+  #password {
+    font-size: 2rem;
   }
 
-  #password {
-    font-size: 1rem;
-  }
-}
 
 @media (max-width: 500px) {
-  .btn {
-    font-size: 0.8rem;
+  .result-container {
+    font-size: 22px;
   }
 }

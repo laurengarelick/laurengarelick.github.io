@@ -5,17 +5,19 @@ const uppercaseEl = document.getElementById('uppercase');
 const lowercaseEl = document.getElementById('lowercase');
 const numbersEl = document.getElementById('numbers');
 const symbolsEl = document.getElementById('symbols');
+
 const generateEl = document.getElementById('generate');
 
 
-const randomFunc = {
+const randomFun = {
   lower: getRandomLower,
   upper: getRandomUpper,
   number: getRandomNumber,
   symbol: getRandomSymbol
 };
 
-generateEl.addEventListener('click', () => {
+generate.addEventListener('click', () => {
+ 
   const length = +lengthEl.value;
   const hasLower = lowercaseEl.checked;
   const hasUpper = uppercaseEl.checked;
@@ -23,21 +25,23 @@ generateEl.addEventListener('click', () => {
   const hasSymbol = symbolsEl.checked;
     
   resultEl.innerText = generatePassword(
-    hasLower, 
+    hasLower,  
     hasUpper, 
     hasNumber, 
     hasSymbol,
     length
   );
 });
+
+
+
 // generate password function
 function generatePassword(lower, number, symbol, length) {
 
+      
 let generatedPassword = '';
 
 const typesCount = lower + upper + number + symbol;
-
-console.log('typesCount; ', typesCount);
 
 const typesArr = [{lower}, {upper}, {number}, {symbol}].filter
 (
@@ -46,22 +50,21 @@ const typesArr = [{lower}, {upper}, {number}, {symbol}].filter
 
 console.log('typesArr: ', typesArr);
 
-if(typesCount ===0) {
-  return '';
+if(typesCount === 0) { 
+        return '';
+}
 
-for(let i = 0; i< length; i += typesCount) {
+
+  for(let i = 0; i< length; i += typesCount) {
   typesArr.forEach(type => {
-    const funcName = Object.keys(type)[0]
-console.log('funcName; ', funcName);
-    generatedPassword += randomFunc[funcName]();
+    const funcName = Object.keys(type)[0];
+    generatedPassword += randomFun[funcName]();
   });
   }
   const finalPassword = generatedPassword.slice(0, length);
   return finalPassword;
-}
 
 
-var generateBtn = document.querySelector("#generate");
 
 function getRandomLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
@@ -75,4 +78,4 @@ function getRandomNumber() {
 function getRandomSymbol() {
   const symbols = `!@#$%^&*(){}[]=<>?<>`;
   return symbols[Math.floor(Math.random() * symbols.length)];
-}
+}}
