@@ -1,90 +1,71 @@
-(function() {
-    console.log("started")       
-    // the DOM will be available here
- })();
+const startButton = document.getElementById('start-btn');
+const qDiv = document.getElementById('questions');
+const aDiv = document.getElementById('answers');
+const results = document.getElementById('results')
+let shuffledQuestions;
+let qIndex = 0;
+let correct = 0;
+let incorrect = 0;
 
-const startButton = document.getElementById('start-btn')
-const nextButton = document.getElementById('next-btn')
-const questionContainerElement = document.getElementById('question-container')
-const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answer-buttons')
-
-let shuffledQuestions, currentQuestionIndex
-
-startButton.addEventListener('click', startGame)
-nextButton.addEventListener('click', () => {
-    currentQuestionIndex++
-    setNextQuestion() 
-}) 
+startButton.addEventListener('click', startGame);
 
 function startGame() {  
     startButton.classList.add('hide')
-    shuffledQuestions = questions.sort(() => Math.random() - .5)
-    shuffledQuestionIndex = 0
-    questionContainerElement.classList.remove('hide')
-    setNextQuestion()
+    shuffledQuestions = questions.sort(() => Math.random() - .5);
+    showQuestion()
 }
 
-function setNextQuestion() {    
-    showQuestion(shuffledQuestions[currentQuestionIndex ])
-}
-
-function showQuestion(question) {
-    questionElement.innerText = question.question
-    question.answers.forEach(answer => { 
+function showQuestion() {
+    //when shuffledQuestions.length is < qIndex; end the game;
+    if(qIndex >= shuffledQuestions.length){
+        endGame()
+    }else{
+        let question = shuffledQuestions[qIndex];
+    qDiv.innerText = question.title;
+    aDiv.innerHTML = '';
+    question.choices.forEach(function(answer) { 
         const button = document.createElement('button')
-        button.innerText = answer.text
-        button.classList.add('btn')
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        }
+        button.innerText = answer
+        button.classList.add('btn');
+        button.classList.add('btn-danger')
         button.addEventListener('click', selectAnswer)
-        answerButtonsElement.appendChild(button)
+        aDiv.appendChild(button)
     })
 }
-
-function resetState() {
-    clearStatusClass(document.body)
-    nextButton.classList.add('hide')
-    while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
-}   
+    
 
 function selectAnswer(e) {
-    const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    setsStatusClass(document.body, correct)
-    Array.from(answerButtonsElement.children).forEach(button => {
-        setsStatusClass(button, button.dataset.correct)
-  })
-  if (shuffledQuestions.length > currentQuestionIndex + 1) {
-      nextButton.classList.remove('hide')
-  } else {
-      startButton.innerText = 'Restart'
-      startButton.classList.remove('hide')
-  }
+    let selected = e.target.innerText;
+    let answer = shuffledQuestions[qIndex].answer;
+    if(answer === selected){
+       console.log(" its correct")
+       correct ++;
+    }else{
+       console.log("its incorrect") ;
+       incorrect++;
+    };
+    qIndex ++;
+    showQuestion()
+}  
+
+function endGame(){
+    console.log(`game over! correct - ${correct}  incorrect - ${incorrect}`)
+    qDiv.innerHTML = '';
+    aDiv.innerHTML = '';
+    results.innerText = `game over! correct - ${correct}  incorrect - ${incorrect}`
+    let reset = document.createElement('button');
+    reset.innerText = 'RESET';
+    reset.addEventListener('click', resetGame);
+    results.appendChild(reset)
 }
 
-function setsStatusClass(element, correct) {
-    clearStatusClass(element)
-    if (correct) {
-     element.classList.add('correct') 
-      }  else {
-          element.classList.add('wrong')
-
-    }     
- }        
+function resetGame(){
+    console.log('resetting!')
+    startButton.classList.remove('hide');
+    results.innerHTML = ''
+    qIndex = 0;
+    correct = 0;
+    incorrect = 0;
+}
      
-    
-    
-    const questions = [
-    {
-        question: 'What is 2 + 2',
-        answers: [
-            { text: '4', correct: true },
-            { text: '22', correct: false}
-
-        ]
-    }
-]

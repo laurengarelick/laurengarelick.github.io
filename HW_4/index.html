@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <link rel="stylesheet" href="style.css">
+    <script src="questions.js"></script>
     <script defer src="script.js"></script>
     <title>Quiz App</title>
 </head>
   <body>
     <div class="container">
-        <div id="question-container" class="hide">
+      <div class="jumbotron justify-content-center" style='text-align:center;'><h1>CODING QUIZ!</h1></div>
+      <div class="row"><button id="start-btn" class="btn-danger btn" style='margin:auto'>START</button></div>
+      
+        <h2 id="questions" class='row'></h2>
+        <div id="answers" class='row'></div>
+        <div id="results"></div>
+        <!-- <div id="question-container" class="hide row">
         <div id="question">Question</div>
         <div id="answer-buttons" class="btn-grid">
             <button class="btn">Answer 1</button>
@@ -21,7 +30,7 @@
             <div class="controls">
                 <button id="start-btn" class="start-btn btn">Start</button>
                 <button id="next-btn" class="next-btn btn hide">Next</button> 
-            </div>
+            </div> -->
     </div>
   </body>  
 </html>
