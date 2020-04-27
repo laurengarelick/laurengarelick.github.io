@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Password Generator</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src=".script.js" defer></script>
+    <link rel="stylesheet" href="style.css"/>
   </head> 
   <body>
     <div class="wrapper">
       <header>
         <h1>Password Generator</h1>
       </header>
-      <div class="carce="number" id="length" min="8" max="128" value="8" />
-          </div>  
+      <div>Your Password Is - <span id="result"></span></div>
+      <input type="range" min="8" max="128" value="8" class="slider" id="myRange">
+      <div>
+        <p></p><span id='sliderVal'></span>  Characters</p>
+      </div>
           <div class="card-body">
             <label for="uppercase">Include uppercase letters</label>
             <input type="checkbox" id="uppercase" checked />
@@ -34,11 +36,10 @@
       </div>
       
           <button class="btn btn-large" id="generate">Generate Password
-
           </button>
         </div>
       </div>
     </div>
-    
+    <script src="script.js"></script>
   </body>
 </html>
