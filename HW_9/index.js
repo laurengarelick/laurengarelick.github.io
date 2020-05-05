@@ -4,6 +4,7 @@ const {prompt} = require('inquirer');
 const fs = require('fs');
 
 
+
 // * At least one badge
 // * Project title
 // * Description
@@ -17,8 +18,8 @@ const fs = require('fs');
 // * User GitHub profile picture
 // * User GitHub email
 
-fs.writeFile = util.promisify(fs.writeFile);
-const questions = [{
+
+const answers = prompt.inquirer({
     message: "What is the title of your project?",
     name: 'title',
     default: "The Best Project Ever"
@@ -66,34 +67,38 @@ const questions = [{
     message: "Are there any tests you'd like to include with this project?",
     name: 'test',
     default: "No tests at this time."
-}]
+});
+ 
 
+// async function init(){
+//     const answers = await prompt(questions);
+//     const template = `<!DOCTYPE md>
 
-async function init(){
-    const answers = await prompt(questions);
-    const template = `<!DOCTYPE md>
-
-    `
-    fs.writeFile(`${answers.name}Profile.html`, template, (err)=>console.log('success!'))
-}
-init()
+//     `
+//     fs.writeFile(`${answers.name}Profile.html`, template, (err)=>console.log('success!'))
+// }
+// init()
 //use prompt to gather some info...
 async function init(){
     const response = await prompt(questions);
-    console.log(response);
+    console.log(questions.response);
     writeHTML(response)
 }
-async function writeMD (data){
+async function writeHTML (data){
 const template = 
-`# Title of Project
+`# ${data.title}
 
 ## Description
+
+${data.description}
 
 ## Table of Contents
 
 ## Installation
 
 ## Usage
+
+${data.usage}
 
 ## License
 
