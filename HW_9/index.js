@@ -1,24 +1,7 @@
-
 const util = require('util');
 const {prompt} = require('inquirer');
 const fs = require('fs');
 const axios = require('axios')
-
-
-
-// * At least one badge
-// * Project title
-// * Description
-// * Table of Contents
-// * Installation
-// * Usage
-// * License
-// * Contributing
-// * Tests
-// * Questions
-// * User GitHub profile picture
-// * User GitHub email
-
 
 const questions = [
     {
@@ -77,23 +60,13 @@ const questions = [
     default: "npm run test"
 }];
  
-
-// async function init(){
-//     const answers = await prompt(questions);
-//     const template = `<!DOCTYPE md>
-
-//     `
-//     fs.writeFile(`${answers.name}Profile.html`, template, (err)=>console.log('success!'))
-// }
-// init()
-//use prompt to gather some info...
 async function init(){
     const response = await prompt(questions);
     console.log(questions.response);
     const githubData = await getGithub(response.github)
     console.log('github api', githubData.data)
     writeMD({...response, ...githubData.data})
-}
+
 
 async function writeMD (data){
 const badge = data.license === "Apache" ? "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)" :
@@ -176,4 +149,4 @@ for (let i = 0; i < github_userdata.data.length; i++) {
     }
 }
 return "User profile image unavailable";
-}
+}}
