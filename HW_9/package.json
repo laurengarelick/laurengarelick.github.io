@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.19.2",
-    "i": "^0.3.6",
+    "i": "^0.3.7",
     "inquirer": "^7.1.0"
   },
   "devDependencies": {},
